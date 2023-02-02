@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+import '../screens/profile_screen.dart';
 
 class HomeScreenNavBar extends StatelessWidget {
   HomeScreenNavBar({required this.triggerAnimation});
@@ -26,9 +27,16 @@ class HomeScreenNavBar extends StatelessWidget {
           SizedBox(
             width: 16.0,
           ),
-          CircleAvatar(
-            radius: 18.0,
-            backgroundImage: AssetImage('asset/images/profile.jpg'),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
+              );
+            },
+            child: CircleAvatar(
+              radius: 18.0,
+              backgroundImage: AssetImage('asset/images/profile.jpg'),
+            ),
           ),
         ],
       ),
