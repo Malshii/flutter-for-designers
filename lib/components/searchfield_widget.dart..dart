@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -11,16 +10,15 @@ class SearchFieldWidget extends StatelessWidget {
         padding: EdgeInsets.only(left: 12.0, right: 33.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(14.0),
-            boxShadow: [
-              BoxShadow(
-                color: kShadowColor,
-                offset: Offset(0, 12),
-                blurRadius: 16.0,
-              )
-            ],
-          ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(14.0),
+              boxShadow: [
+                BoxShadow(
+                  color: kShadowColor,
+                  offset: Offset(0, 12),
+                  blurRadius: 16.0,
+                )
+              ]),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: TextField(
@@ -43,6 +41,6 @@ class SearchFieldWidget extends StatelessWidget {
           ),
         ),
       ),
-    );;
+    );
   }
 }

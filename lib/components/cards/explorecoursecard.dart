@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-
+import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../../model/course.dart';
 
@@ -11,7 +10,7 @@ class ExploreCourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 20.0),
+      padding: EdgeInsets.only(right: 20.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(41.0),
         child: Container(

@@ -1,10 +1,10 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../components/certificate_viewer.dart';
 import '../components/lists/completedcourseslist.dart';
 import '../constants.dart';
-import '../model/course.dart';
 
 class ProfileScreen extends StatelessWidget {
   final List<String> badges = [
@@ -79,23 +79,22 @@ class ProfileScreen extends StatelessWidget {
                             width: 40.0,
                             height: 40.0,
                             decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(14.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: kShadowColor,
-                                  offset: Offset(0, 12),
-                                  blurRadius: 32.0,
-                                )
-                              ],
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(14.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: kShadowColor,
+                                    offset: Offset(0, 12),
+                                    blurRadius: 32.0,
+                                  )
+                                ]),
+                            child: Icon(
+                              Platform.isAndroid
+                                  ? Icons.settings
+                                  : CupertinoIcons.settings_solid,
+                              color: kSecondaryLabelColor,
                             ),
-                            // child: Icon(
-                            //   Platform.isAndroid
-                            //       ? Icons.settings
-                            //       : CupertinoIcons.settings_solid,
-                            //   color: kSecondaryLabelColor,
-                            // ),
-                          ),
+                          )
                         ],
                       ),
                     ),
@@ -104,17 +103,6 @@ class ProfileScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
-                            height: 84.0,
-                            width: 84.0,
-                            decoration: BoxDecoration(
-                              gradient: RadialGradient(
-                                colors: [
-                                  Color(0xFF00AEFF),
-                                  Color(0xFF0076FF),
-                                ],
-                              ),
-                              borderRadius: BorderRadius.circular(42.0),
-                            ),
                             child: Padding(
                               padding: EdgeInsets.all(6.0),
                               child: Container(
@@ -129,6 +117,17 @@ class ProfileScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(42.0),
                                 ),
                               ),
+                            ),
+                            height: 84.0,
+                            width: 84.0,
+                            decoration: BoxDecoration(
+                              gradient: RadialGradient(
+                                colors: [
+                                  Color(0xFF00AEFF),
+                                  Color(0xFF0076FF),
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(42.0),
                             ),
                           ),
                           SizedBox(width: 16.0),
@@ -150,30 +149,32 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
-                        top: 28.0,
-                        bottom: 16.0,
-                        left: 20.0,
-                        right: 20.0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      padding: EdgeInsets.only(top: 28.0, bottom: 16.0),
+                      child: Column(
                         children: [
-                          Text(
-                            "Badges",
-                            style: kHeadlineLabelStyle,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "See all",
-                                style: kSearchPlaceholderStyle,
-                              ),
-                              Icon(
-                                Icons.chevron_right,
-                                color: kSecondaryLabelColor,
-                              ),
-                            ],
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Badges",
+                                  style: kHeadlineLabelStyle,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "See all",
+                                      style: kSearchPlaceholderStyle,
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right,
+                                      color: kSecondaryLabelColor,
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -190,9 +191,7 @@ class ProfileScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Container(
                             padding: EdgeInsets.only(
-                              left: 20.0,
-                              right: index != 3 ? 0.0 : 20.0,
-                            ),
+                                left: 20.0, right: index != 3 ? 0.0 : 20.0),
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
@@ -206,7 +205,7 @@ class ProfileScreen extends StatelessWidget {
                           );
                         },
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -218,20 +217,25 @@ class ProfileScreen extends StatelessWidget {
                 right: 20.0,
                 bottom: 12.0,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
                 children: [
-                  Text(
-                    "Certificates",
-                    style: kHeadlineLabelStyle,
-                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "See all",
-                        style: kSearchPlaceholderStyle,
+                        "Certificates",
+                        style: kHeadlineLabelStyle,
                       ),
-                      Icon(Icons.chevron_right, color: kSecondaryLabelColor),
+                      Row(
+                        children: [
+                          Text(
+                            "See all",
+                            style: kSearchPlaceholderStyle,
+                          ),
+                          Icon(Icons.chevron_right,
+                              color: kSecondaryLabelColor),
+                        ],
+                      ),
                     ],
                   ),
                 ],
@@ -244,20 +248,25 @@ class ProfileScreen extends StatelessWidget {
                 right: 20.0,
                 bottom: 12.0,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
                 children: [
-                  Text(
-                    "Completed Courses",
-                    style: kHeadlineLabelStyle,
-                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "See all",
-                        style: kSearchPlaceholderStyle,
+                        "Completed Courses",
+                        style: kHeadlineLabelStyle,
                       ),
-                      Icon(Icons.chevron_right, color: kSecondaryLabelColor),
+                      Row(
+                        children: [
+                          Text(
+                            "See all",
+                            style: kSearchPlaceholderStyle,
+                          ),
+                          Icon(Icons.chevron_right,
+                              color: kSecondaryLabelColor),
+                        ],
+                      ),
                     ],
                   ),
                 ],

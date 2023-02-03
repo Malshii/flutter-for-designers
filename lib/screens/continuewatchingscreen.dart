@@ -1,14 +1,8 @@
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-
-import '../components/cards/continuewatchingcard.dart';
 import '../components/certificate_viewer.dart';
 import '../components/lists/continuewatchinglist.dart';
 import '../constants.dart';
-import '../model/course.dart';
 
 class ContinueWatchingScreen extends StatelessWidget {
   @override
@@ -67,5 +61,3 @@ class ContinueWatchingScreen extends StatelessWidget {
     );
   }
 }
-
-

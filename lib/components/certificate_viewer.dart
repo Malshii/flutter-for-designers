@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CertificateViewer extends StatefulWidget {
   @override
-  State<CertificateViewer> createState() => _CertificateViewerState();
+  _CertificateViewerState createState() => _CertificateViewerState();
 }
 
 class _CertificateViewerState extends State<CertificateViewer> {
@@ -15,14 +15,6 @@ class _CertificateViewerState extends State<CertificateViewer> {
   ];
 
   late Widget certificateViewer;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 20),
-      child: certificateViewer,
-    );
-  }
 
   @override
   void initState() {
@@ -39,7 +31,7 @@ class _CertificateViewerState extends State<CertificateViewer> {
 
       imageChildren.add(
         Transform.rotate(
-          angle: angleDegree! * (pi / 180),
+          angle: angleDegree * (pi / 180),
           child: Image.asset(
             certificate,
             alignment: Alignment.center,
@@ -51,6 +43,14 @@ class _CertificateViewerState extends State<CertificateViewer> {
 
     certificateViewer = Stack(
       children: imageChildren,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 20),
+      child: certificateViewer,
     );
   }
 }

@@ -19,19 +19,18 @@ class RecentCourseCard extends StatelessWidget {
             width: 240,
             height: 240,
             decoration: BoxDecoration(
-              gradient: course.background,
-              borderRadius: BorderRadius.circular(41.0),
-              boxShadow: [
-                BoxShadow(
-                    color: course.background.colors[0].withOpacity(0.3),
-                    offset: Offset(0, 20),
-                    blurRadius: 30.0),
-                BoxShadow(
-                    color: course.background.colors[1].withOpacity(0.3),
-                    offset: Offset(0, 20),
-                    blurRadius: 30.0)
-              ],
-            ),
+                gradient: course.background,
+                borderRadius: BorderRadius.circular(41.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: course.background.colors[0].withOpacity(0.3),
+                      offset: Offset(0, 20),
+                      blurRadius: 30.0),
+                  BoxShadow(
+                      color: course.background.colors[1].withOpacity(0.3),
+                      offset: Offset(0, 20),
+                      blurRadius: 30.0)
+                ]),
             child: Column(
               children: [
                 Padding(
@@ -90,10 +89,7 @@ class RecentCourseCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(18.0),
               boxShadow: [
                 BoxShadow(
-                  color: kShadowColor,
-                  offset: Offset(0, 4),
-                  blurRadius: 16.0,
-                ),
+                    color: kShadowColor, offset: Offset(0, 4), blurRadius: 16.0)
               ],
             ),
             padding: EdgeInsets.all(12.0),

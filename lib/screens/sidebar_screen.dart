@@ -4,7 +4,6 @@ import '../components/sidebar_row.dart';
 import '../constants.dart';
 import '../model/sidebar.dart';
 
-//show sidebar
 class SidebarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,6 @@ class SidebarScreen extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            //display profile
             Row(
               children: [
                 CircleAvatar(
@@ -41,19 +39,26 @@ class SidebarScreen extends StatelessWidget {
                       "Sai Kambampati",
                       style: kHeadlineLabelStyle,
                     ),
-                    SizedBox(height: 4),
+                    SizedBox(
+                      height: 4,
+                    ),
                     Text(
                       "License ends on 21 Jan, 2021",
                       style: kSearchPlaceholderStyle,
                     )
                   ],
-                ),
+                )
               ],
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.08,
             ),
-            //display sidebar items
+            SidebarRow(
+              item: sidebarItem[0],
+            ),
+            SizedBox(
+              height: 32.0,
+            ),
             SidebarRow(
               item: sidebarItem[1],
             ),
@@ -72,9 +77,7 @@ class SidebarScreen extends StatelessWidget {
             SizedBox(
               height: 32.0,
             ),
-            //create space to bottom
             Spacer(),
-            //display sidebar bottom
             Row(
               children: [
                 Image.asset(
@@ -87,9 +90,9 @@ class SidebarScreen extends StatelessWidget {
                 Text(
                   "Log out",
                   style: kSecondaryCalloutLabelStyle,
-                ),
+                )
               ],
-            ),
+            )
           ],
         ),
       ),

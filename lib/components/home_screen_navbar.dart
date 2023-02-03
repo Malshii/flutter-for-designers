@@ -1,6 +1,5 @@
 import 'package:development/components/searchfield_widget.dart..dart';
 import 'package:development/components/sidebar_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -14,11 +13,13 @@ class HomeScreenNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SidebarButton(triggerAnimation: triggerAnimation,),
+          SidebarButton(
+            triggerAnimation: triggerAnimation,
+          ),
           SearchFieldWidget(),
           Icon(
             Icons.notifications,
@@ -30,8 +31,7 @@ class HomeScreenNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileScreen()),
-              );
+                  MaterialPageRoute(builder: (context) => ProfileScreen()));
             },
             child: CircleAvatar(
               radius: 18.0,

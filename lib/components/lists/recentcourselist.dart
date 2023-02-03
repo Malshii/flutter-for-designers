@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/course.dart';
@@ -13,6 +12,7 @@ class RecentCourseList extends StatefulWidget {
 class _RecentCourseListState extends State<RecentCourseList> {
   List<Container> indicators = [];
   int currentPage = 0;
+
   Widget updateIndicators() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -66,9 +66,11 @@ class _RecentCourseListState extends State<RecentCourseList> {
             itemCount: recentCourses.length,
             controller: PageController(initialPage: 0, viewportFraction: 0.63),
             onPageChanged: (index) {
-              setState(() {
-                currentPage = index;
-              });
+              setState(
+                    () {
+                  currentPage = index;
+                },
+              );
             },
           ),
         ),

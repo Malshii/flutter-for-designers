@@ -1,17 +1,16 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../model/course.dart';
 import '../cards/continuewatchingcard.dart';
 
 class ContinueWatchingList extends StatefulWidget {
   @override
-  State<ContinueWatchingList> createState() => _ContinueWatchingListState();
+  _ContinueWatchingListState createState() => _ContinueWatchingListState();
 }
 
 class _ContinueWatchingListState extends State<ContinueWatchingList> {
   List<Container> indicators = [];
   int currentPage = 0;
-
   Widget updateIndicators() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -60,4 +59,3 @@ class _ContinueWatchingListState extends State<ContinueWatchingList> {
     );
   }
 }
-

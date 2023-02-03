@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../model/course.dart';
@@ -8,14 +8,12 @@ class CourseSectionList extends StatelessWidget {
   List<Widget> courseSectionsWidgets() {
     List<Widget> cards = [];
     for (var course in courseSections) {
-      cards.add(
-        Padding(
-          padding: EdgeInsets.only(bottom: 20.0),
-          child: CourseSectionCard(
-            course: course,
-          ),
+      cards.add(Padding(
+        padding: EdgeInsets.only(bottom: 20.0),
+        child: CourseSectionCard(
+          course: course,
         ),
-      );
+      ));
     }
 
     cards.add(
@@ -31,6 +29,7 @@ class CourseSectionList extends StatelessWidget {
 
     return cards;
   }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(

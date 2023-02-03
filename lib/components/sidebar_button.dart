@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -21,16 +20,15 @@ class SidebarButton extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(14.0),
-          boxShadow: [
-            BoxShadow(
-              color: kShadowColor,
-              offset: Offset(0, 12),
-              blurRadius: 16.0,
-            )
-          ],
-        ),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(14.0),
+            boxShadow: [
+              BoxShadow(
+                color: kShadowColor,
+                offset: Offset(0, 12),
+                blurRadius: 16.0,
+              )
+            ]),
         child: Image.asset(
           'asset/icons/icon-sidebar.png',
           color: kPrimaryLabelColor,

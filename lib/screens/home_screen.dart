@@ -1,8 +1,9 @@
 import 'package:development/screens/sidebar_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
-import '../components/homescreennavbar.dart';
+import '../components/home_screen_navbar.dart';
 import '../components/lists/explorecourselist.dart';
 import '../components/lists/recentcourselist.dart';
 import '../constants.dart';
@@ -66,6 +67,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     children: [
                       HomeScreenNavBar(
                         triggerAnimation: () {
+                          SchedulerBinding.instance.addPostFrameCallback((_) {
+                            setState(() {
+                              sidebarHidden = !sidebarHidden;
+                            });
+                          });
                           // setState(() {
                           //   sidebarHidden = !sidebarHidden;
                           // });
@@ -129,22 +135,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           setState(() {
                             sidebarHidden = !sidebarHidden;
                           });
-                          sidebarAnimationController.reverse();
+                          if (sidebarHidden) {
+                            sidebarAnimationController.reverse();
+                          } else {
+                            sidebarAnimationController.forward();
+                          }
                         },
                       ),
                     ),
                     SlideTransition(
                       position: sidebarAnimation,
-                      // child: SafeArea(
-                      //   bottom: false,
-                      //   child: SidebarScreen(),
-                      // ),
+                      child: SafeArea(
+                        bottom: false,
+                        child: SidebarScreen(),
+                      ),
                     ),
                   ],
                 ),
               ),
             ],
-          )
+          ),
       ),
     );
   }

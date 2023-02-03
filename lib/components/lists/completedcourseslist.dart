@@ -1,17 +1,16 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../model/course.dart';
 import '../cards/completedcoursescard.dart';
 
 class CompletedCoursesList extends StatefulWidget {
   @override
-  State<CompletedCoursesList> createState() => _CompletedCoursesListState();
+  _CompletedCoursesListState createState() => _CompletedCoursesListState();
 }
 
 class _CompletedCoursesListState extends State<CompletedCoursesList> {
   List<Container> indicators = [];
   int currentPage = 0;
-
   Widget updateIndicators() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -40,11 +39,10 @@ class _CompletedCoursesListState extends State<CompletedCoursesList> {
           child: PageView.builder(
             itemBuilder: (context, index) {
               return Opacity(
-                opacity: currentPage == index ? 1.0 : 0.5,
-                child: CompletedCoursesCard(
-                  course: continueWatchingCourses[index],
-                ),
-              );
+                  opacity: currentPage == index ? 1.0 : 0.5,
+                  child: CompletedCoursesCard(
+                    course: completedCourses[index],
+                  ));
             },
             itemCount: completedCourses.length,
             onPageChanged: (index) {
@@ -60,4 +58,3 @@ class _CompletedCoursesListState extends State<CompletedCoursesList> {
     );
   }
 }
-

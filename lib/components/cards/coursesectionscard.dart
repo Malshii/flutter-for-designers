@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../model/course.dart';
@@ -15,21 +15,20 @@ class CourseSectionCard extends StatelessWidget {
       child: Container(
         height: 120.0,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(41.0),
-          gradient: course.background,
-          boxShadow: [
-            BoxShadow(
-              color: course.background.colors[0].withOpacity(0.3),
-              blurRadius: 30.0,
-              offset: Offset(0, 20),
-            ),
-            BoxShadow(
-              color: course.background.colors[1].withOpacity(0.3),
-              blurRadius: 30.0,
-              offset: Offset(0, 20),
-            )
-          ],
-        ),
+            borderRadius: BorderRadius.circular(41.0),
+            gradient: course.background,
+            boxShadow: [
+              BoxShadow(
+                color: course.background.colors[0].withOpacity(0.3),
+                blurRadius: 30.0,
+                offset: Offset(0, 20),
+              ),
+              BoxShadow(
+                color: course.background.colors[1].withOpacity(0.3),
+                blurRadius: 30.0,
+                offset: Offset(0, 20),
+              )
+            ]),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(41.0),
           child: Padding(
