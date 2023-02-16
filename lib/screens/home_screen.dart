@@ -1,4 +1,3 @@
-import 'package:development/screens/sidebar_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -21,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   var sidebarHidden = true;
 
-  @override
+  // @override
   void initState() {
     super.initState();
     sidebarAnimationController = AnimationController(
@@ -62,97 +61,98 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           child: Stack(
             children: [
               SafeArea(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      HomeScreenNavBar(
-                        triggerAnimation: () {
-                          SchedulerBinding.instance.addPostFrameCallback((_) {
-                            setState(() {
-                              sidebarHidden = !sidebarHidden;
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 90.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        HomeScreenNavBar(
+                          triggerAnimation: () {
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                              setState(() {
+                                sidebarHidden = !sidebarHidden;
+                              });
                             });
-                          });
-                          // setState(() {
-                          //   sidebarHidden = !sidebarHidden;
-                          // });
-                          sidebarAnimationController.forward();
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              "Recents",
-                              style: kLargeTitleStyle,
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              "23 courses, more coming",
-                              style: kSubtitleStyle,
-                            ),
-                          ],
+                            // setState(() {
+                            //   sidebarHidden = !sidebarHidden;
+                            // });
+                            sidebarAnimationController.forward();
+                          },
                         ),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      RecentCourseList(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 25.0, bottom: 16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              "Explore",
-                              style: kTitle1Style,
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          // padding: EdgeInsets.only(left: 20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                "Recents",
+                                style: kLargeTitleStyle,
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(
+                                "23 courses, more coming",
+                                style: kSubtitleStyle,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      ExploreCourseList(),
-                    ],
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        RecentCourseList(),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 25.0, bottom: 16.0),
+                          // padding: EdgeInsets.only(left: 20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                "Explore",
+                                style: kTitle1Style,
+                              ),
+                            ],
+                          ),
+                        ),
+                        ExploreCourseList(),
+                      ],
+                    ),
                   ),
                 ),
               ),
               ContinueWatchingScreen(),
-              IgnorePointer(
-                ignoring: sidebarHidden,
-                child: Stack(
-                  children: [
-                    FadeTransition(
-                      opacity: fadeAnimation,
-                      child: GestureDetector(
-                        child: Container(
-                          color: Color.fromRGBO(36, 38, 41, 0.4),
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                        onTap: () {
-                          setState(() {
-                            sidebarHidden = !sidebarHidden;
-                          });
-                          if (sidebarHidden) {
-                            sidebarAnimationController.reverse();
-                          } else {
-                            sidebarAnimationController.forward();
-                          }
-                        },
-                      ),
-                    ),
-                    SlideTransition(
-                      position: sidebarAnimation,
-                      child: SafeArea(
-                        bottom: false,
-                        child: SidebarScreen(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // IgnorePointer(
+              //   ignoring: sidebarHidden,
+              //   child: Stack(
+              //     children: [
+              //       FadeTransition(
+              //         opacity: fadeAnimation,
+              //         child: GestureDetector(
+              //           child: Container(
+              //             color: Color.fromRGBO(36, 38, 41, 0.4),
+              //             height: MediaQuery.of(context).size.height,
+              //             width: MediaQuery.of(context).size.width,
+              //           ),
+              //           onTap: () {
+              //             setState(() {
+              //               sidebarHidden = !sidebarHidden;
+              //             });
+              //             sidebarAnimationController.reverse();
+              //           },
+              //         ),
+              //       ),
+              //       SlideTransition(
+              //         position: sidebarAnimation,
+              //         child: SafeArea(
+              //           child: SidebarScreen(),
+              //             bottom: false,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
       ),
