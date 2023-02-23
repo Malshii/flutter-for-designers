@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,13 +8,81 @@ import '../components/certificate_viewer.dart';
 import '../components/lists/completedcourseslist.dart';
 import '../constants.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final List<String> badges = [
     'badge-01.png',
     'badge-02.png',
     'badge-03.png',
     'badge-04.png',
   ];
+
+  final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+  var name = "Loading...";
+  var bio = "Loading...";
+
+  void initState() {
+    super.initState();
+    loadUserData();
+  }
+
+  void loadUserData() {
+    _firestore
+        .collection("users")
+        .doc(_auth.currentUser?.uid)
+        .get()
+        .then((snapshot) {
+      setState(() {
+        name = snapshot.data()!["name"];
+        bio = snapshot.data()!["bio"];
+      });
+    });
+  }
+
+  void updateUserData() {
+    _firestore.collection("users").doc(_auth.currentUser?.uid).update({
+      'name': name,
+      'bio': bio,
+    }).then((value) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Success!"),
+              content: Text("The profile data has been updated!"),
+              actions: [
+                MaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("OK!"))
+              ],
+            );
+          });
+    }).catchError((err) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Uh-Oh!"),
+              content: Text("$err"),
+              actions: [
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Try Again!"),
+                )
+              ],
+            );
+          });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,24 +145,63 @@ class ProfileScreen extends StatelessWidget {
                             "Profile",
                             style: kCalloutLabelStyle,
                           ),
-                          Container(
-                            width: 40.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(14.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: kShadowColor,
-                                    offset: Offset(0, 12),
-                                    blurRadius: 32.0,
-                                  )
-                                ]),
-                            child: Icon(
-                              Platform.isAndroid
-                                  ? Icons.settings
-                                  : CupertinoIcons.settings_solid,
-                              color: kSecondaryLabelColor,
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Update Your Profile"),
+                                      content: Column(
+                                        children: [
+                                          TextField(
+                                            onChanged: (newValue) {
+                                              setState(() {
+                                                name = newValue;
+                                              });
+                                            },
+                                            controller: TextEditingController(text: name),
+                                          ),
+                                          TextField(
+                                            onChanged: (newValue) {
+                                              setState(() {
+                                                bio = newValue;
+                                              });
+                                            },
+                                            controller: TextEditingController(text: bio),
+                                          )
+                                        ],
+                                      ),
+                                      actions: [
+                                        MaterialButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                              updateUserData();
+                                            },
+                                            child: Text("Update!"))
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: Container(
+                              width: 40.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(14.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: kShadowColor,
+                                      offset: Offset(0, 12),
+                                      blurRadius: 32.0,
+                                    )
+                                  ]),
+                              child: Icon(
+                                Platform.isAndroid
+                                    ? Icons.edit
+                                    : CupertinoIcons.pencil,
+                                color: kSecondaryLabelColor,
+                              ),
                             ),
                           )
                         ],
@@ -135,12 +244,12 @@ class ProfileScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Sai Kambampati",
+                                "${name}",
                                 style: kTitle2Style,
                               ),
                               SizedBox(height: 8.0),
                               Text(
-                                "Flutter Developer",
+                                "${bio}",
                                 style: kSecondaryCalloutLabelStyle,
                               ),
                             ],
